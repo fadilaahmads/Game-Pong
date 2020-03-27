@@ -19,7 +19,14 @@ public class ballmovements : MonoBehaviour
      //Ketika bola menabrak objek  
     void OnCollisionEnter2D(Collision2D other) {
          if(other.collider.name=="WallRight" || other.collider.name=="WallLeft"){
-            GetComponent<Transform>().position = new Vector2(0,0);
+            StartCoroutine(jeda());
+           
          }
+    }
+    IEnumerator jeda(){
+        GetComponent<Rigidbody2D>().velocity =  Vector2.zero;
+        GetComponent<Transform>().position = new Vector2(0,0);
+        yield return new WaitForSeconds(1);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(-1,-1)*speed;
     }
 }
