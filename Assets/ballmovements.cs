@@ -5,6 +5,8 @@ using UnityEngine;
 public class ballmovements : MonoBehaviour
 {
     public int speed = 30;
+    public Animation anim;
+    public Rigidbody2D sesuatu;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,9 +14,14 @@ public class ballmovements : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-       
+       if(GetComponent<Rigidbody2D>().velocity.x > 0){ //ke kanan
+                sesuatu.GetComponent<Transform>().localScale = new Vector3(1,1,1);
+       }else
+       {
+                sesuatu.GetComponent<Transform>().localScale = new Vector3(-1,1,1);
+       }
     }
      //Ketika bola menabrak objek  
     void OnCollisionEnter2D(Collision2D other) {
